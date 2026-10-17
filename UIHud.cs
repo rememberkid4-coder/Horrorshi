@@ -1,0 +1,3 @@
+using UnityEngine;
+using UnityEngine.UI;
+namespace NightGrove { public class UIHud : MonoBehaviour { public static UIHud Instance; public Text objective; public Text message; public Slider fear; float messageUntil; void Awake(){Instance=this;} void Update(){ if(message && Time.time > messageUntil) message.text=""; if(fear){var p=FindObjectOfType<PlayerVitals>(); if(p) fear.value=p.fear/100f;} if(objective && GameManager.Instance) objective.text=GameManager.Instance.ObjectiveText;} public static void Refresh(){} public static void ShowMessage(string text,float seconds){if(Instance){Instance.message.text=text; Instance.messageUntil=Time.time+seconds;}} } }
